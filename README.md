@@ -1,5 +1,5 @@
 ---
-a:b
+a: b
 ---
 
 # Hello Master
