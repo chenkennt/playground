@@ -5,3 +5,6 @@ This is a video:
 This is a video:
 
 [test](https://youtu.be/qqAVQUSEtng)
+
+
+[!video [this is a video](https://youtu.be/qqAVQUSEtng)]
