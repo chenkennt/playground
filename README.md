@@ -1,1 +1,1 @@
-![test](www.google.com)
+![test](http://www.google.com)
