@@ -1,10 +1,7 @@
-This is a video:
+[google][1]
 
-![test](https://youtu.be/qqAVQUSEtng)
+![google][1]
 
-This is a video:
+![google](www.google.com)
 
-[test](https://youtu.be/qqAVQUSEtng)
-
-
-[!video [this is a video](https://youtu.be/qqAVQUSEtng)]
+[1]: http://www.google.com
