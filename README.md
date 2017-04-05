@@ -1,2 +1,1 @@
-- [ ] Task1
-- [ ] Task2
+<div id="foo"
