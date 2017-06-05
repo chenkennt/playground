@@ -5,7 +5,7 @@ pipeline {
             steps {
                 sh 'echo Stage1'
                 azureDownload storageCredentialId: 'kenchenjenkinsdemotmpl', downloadType: [value: 'container', containerName: 'demo'], includeFilesPattern: '**', downloadDirLoc: 'temp'
-                azureUpload 'kenchenjenkinsdemotmpl', 'temp/**', 'demo2'
+                azureUpload storageCredentialId: 'kenchenjenkinsdemotmpl', filesPath: 'temp/**', containerName: 'demo2'
             }
         }
         stage('stage2') {
