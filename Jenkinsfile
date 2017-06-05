@@ -4,6 +4,7 @@ pipeline {
         stage('stage1') {
             steps {
                 sh 'echo Stage1'
+                azureDownload storageCredentialId: 'kenchenjenkinsdemotmpl', downloadType: [value: 'container']
             }
         }
         stage('stage2') {
