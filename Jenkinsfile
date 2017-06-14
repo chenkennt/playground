@@ -23,7 +23,7 @@ node {
             echo "${AZURE_CLIENT_ID}"
             echo "${AZURE_CLIENT_SECRET}"
             echo "${AZURE_TENANT_ID}"
-            sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $TENANT_ID'
+            sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
             sh 'az account show'
         }
         // with prefix
