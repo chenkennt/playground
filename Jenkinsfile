@@ -36,7 +36,8 @@ node {
             echo "${MY_AZURE_TENANT_ID}"
         }
         // custom name
-        withCredentials([azureCredentials(credentialsId: 'vs_china_jenkins', subscriptionIdVariable: 'SUBS_ID', clientIdVariable: 'CLIENT_ID', clientSecretVariable: 'CLIENT_SECRET', tenantIdVariable: 'TENANT_ID')]) {
+        withCredentials([azureCredentials(
+            credentialsId: 'vs_china_jenkins', subscriptionIdVariable: 'SUBS_ID', clientIdVariable: 'CLIENT_ID', clientSecretVariable: 'CLIENT_SECRET', tenantIdVariable: 'TENANT_ID')]) {
             echo "custom name"
             echo "${SUBS_ID}"
             echo "${CLIENT_ID}"
