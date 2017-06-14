@@ -23,6 +23,7 @@ node {
             echo "${AZURE_CLIENT_ID}"
             echo "${AZURE_CLIENT_SECRET}"
             echo "${AZURE_TENANT_ID}"
+            sh 'az account list'
         }
         // with prefix
         withCredentials([azureCredentials(credentialsId: 'vs_china_jenkins', variablePrefix: 'MY_AZURE')]) {
