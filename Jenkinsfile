@@ -17,7 +17,7 @@ node {
         // azureDownload storageCredentialId: 'kenchenjenkinsdemotmpl', downloadType: [value: 'container', containerName: 'demo'], includeFilesPattern: '**', downloadDirLoc: 'temp'
         // azureUpload storageCredentialId: 'kenchenjenkinsdemotmpl', filesPath: 'temp/**', containerName: 'demo2', virtualPath: env.BUILD_TAG
         // default variable name
-        withCredentials([azureCredentials('vs_china_jenkins')]) {
+        withCredentials([azureServicePrincipal('vs_china_jenkins')]) {
             echo "default variable name"
             echo "${AZURE_SUBSCRIPTION_ID}"
             echo "${AZURE_CLIENT_ID}"
@@ -28,7 +28,7 @@ node {
             sh 'az account show'
         }
         // custom name
-        withCredentials([azureCredentials(
+        withCredentials([azureServicePrincipal(
             credentialsId: 'vs_china_jenkins', subscriptionIdVariable: 'SUBS_ID', clientIdVariable: 'CLIENT_ID', clientSecretVariable: 'CLIENT_SECRET', tenantIdVariable: 'TENANT_ID')]) {
             echo "custom name"
             echo "${SUBS_ID}"
