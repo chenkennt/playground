@@ -27,14 +27,6 @@ node {
             sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
             sh 'az account show'
         }
-        // with prefix
-        withCredentials([azureCredentials(credentialsId: 'vs_china_jenkins', variablePrefix: 'MY_AZURE')]) {
-            echo "with prefix"
-            echo "${MY_AZURE_SUBSCRIPTION_ID}"
-            echo "${MY_AZURE_CLIENT_ID}"
-            echo "${MY_AZURE_CLIENT_SECRET}"
-            echo "${MY_AZURE_TENANT_ID}"
-        }
         // custom name
         withCredentials([azureCredentials(
             credentialsId: 'vs_china_jenkins', subscriptionIdVariable: 'SUBS_ID', clientIdVariable: 'CLIENT_ID', clientSecretVariable: 'CLIENT_SECRET', tenantIdVariable: 'TENANT_ID')]) {
