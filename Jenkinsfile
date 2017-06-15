@@ -12,6 +12,10 @@
 //}
 
 node {
+    def hello() {
+        echo 'Hello'
+    }
+    
     stage('Example') {
         withCredentials([azureServicePrincipal('vs_china_jenkins')]) {
             sh '''
@@ -19,6 +23,7 @@ node {
                 az account set -s $AZURE_SUBSCRIPTION_ID
             '''
         }
+        hello
         sh 'az account show'
         sh 'az webapp deployment list-publishing-profiles -g kenchenwebapp1 -nkenchenwebapp1'
         sh 'az account show'
