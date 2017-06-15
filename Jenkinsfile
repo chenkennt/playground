@@ -19,7 +19,6 @@ node {
             az account set -s $AZURE_SUBSCRIPTION_ID
         '''
     }
-    hello()
     sh 'az account show'
     def pubSettings = sh 'az webapp deployment list-publishing-profiles -g kenchenwebapp1 -nkenchenwebapp1'
     echo pubSettings
