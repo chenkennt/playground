@@ -29,7 +29,7 @@ node {
     sh 'az account show'
     def pubProfilesJson = sh script: 'az webapp deployment list-publishing-profiles -g kenchenwebapp1 -n kenchenwebapp1', returnStdout: true
     def ftpPubProfile = getFtpPublishProfile pubProfilesJson
-    echo pubProfiles["userName"]
+    echo ftpPubProfile["userName"]
     sh 'az account show'
     sh 'az logout'
 }
