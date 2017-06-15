@@ -11,13 +11,13 @@
 //    }
 //}
 
-import groovy.json.JsonSlurperClassic
+import groovy.json.JsonSlurper
 
-@NonCPS
 def getFtpPublishProfile(def publishProfilesJson) {
-    def pubProfiles = new JsonSlurperClassic().parseText(publishProfilesJson)
+    def pubProfiles = new JsonSlurper().parseText(publishProfilesJson)
     for (p in pubProfiles)
-        if (p['publishMethod'] == 'FTP') return p;
+        if (p['publishMethod'] == 'FTP')
+            return new HashMap<>(p)
 }
 
 node {
