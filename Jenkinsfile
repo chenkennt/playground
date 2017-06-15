@@ -13,6 +13,7 @@
 
 import groovy.json.JsonSlurperClassic
 
+@NonCPS
 def getFtpPublishProfile(def publishProfilesJson) {
     def pubProfiles = new JsonSlurperClassic().parseText(publishProfilesJson)
     for (p in pubProfiles)
