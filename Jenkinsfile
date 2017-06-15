@@ -14,11 +14,11 @@
 import groovy.json.JsonSlurper
 
 @NonCPS
-def getFtpPublishProfile(def publishProfilesJson) {
+def getFtpUsernameAndPassword(def publishProfilesJson) {
     def pubProfiles = new JsonSlurper().parseText(publishProfilesJson)
     for (p in pubProfiles)
         if (p['publishMethod'] == 'FTP')
-            return new HashMap<>(p)
+            return [username: p['userName'], password: p['userPWD']]
 }
 
 node {
@@ -30,8 +30,8 @@ node {
     }
     sh 'az account show'
     def pubProfilesJson = sh script: 'az webapp deployment list-publishing-profiles -g kenchenwebapp1 -n kenchenwebapp1', returnStdout: true
-    def ftpPubProfile = getFtpPublishProfile pubProfilesJson
-    echo ftpPubProfile['userName']
+    def usernameAndPasswod = getFtpUsernameAndPassword pubProfilesJson
+    echo usernameAndPasswod['username']
     sh 'az account show'
     sh 'az logout'
 }
