@@ -15,7 +15,7 @@ import groovy.json.JsonSlurper
 
 def getFtpPublishProfile(def publishProfilesJson) {
     def pubProfiles = new JsonSlurper().parseText(publishProfilesJson)
-    for (p : pubProfiles)
+    for (p in pubProfiles)
         if (p["publishMethod"] == "FTP") return p;
 }
 
