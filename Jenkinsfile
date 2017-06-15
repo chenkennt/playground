@@ -11,9 +11,6 @@
 //    }
 //}
 
-def hello() {
-    echo 'Hello'
-}
 
 node {
     withCredentials([azureServicePrincipal('vs_china_jenkins')]) {
@@ -24,7 +21,8 @@ node {
     }
     hello()
     sh 'az account show'
-    sh 'az webapp deployment list-publishing-profiles -g kenchenwebapp1 -nkenchenwebapp1'
+    def pubSettings = sh 'az webapp deployment list-publishing-profiles -g kenchenwebapp1 -nkenchenwebapp1'
+    echo pubSettings
     sh 'az account show'
     sh 'az logout'
 }
