@@ -16,6 +16,7 @@ node {
         withCredentials([azureServicePrincipal('vs_china_jenkins')]) {
             sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
         }
+        sh 'az account show'
         sh 'az webapp deployment list-publishing-profiles -g kenchenwebapp1 -nkenchenwebapp1'
         sh 'az account show'
         sh 'az logout'
