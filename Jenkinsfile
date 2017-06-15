@@ -14,11 +14,11 @@
 import groovy.json.JsonSlurper
 
 @NonCPS
-def getFtpUsernameAndPassword(def publishProfilesJson) {
+def getFtpPublishProfile(def publishProfilesJson) {
     def pubProfiles = new JsonSlurper().parseText(publishProfilesJson)
     for (p in pubProfiles)
         if (p['publishMethod'] == 'FTP')
-            return [username: p['userName'], password: p['userPWD']]
+            return [url: p['publishUrl'], username: p['userName'], password: p['userPWD']]
 }
 
 node {
@@ -30,8 +30,7 @@ node {
     }
     sh 'az account show'
     def pubProfilesJson = sh script: 'az webapp deployment list-publishing-profiles -g kenchenwebapp1 -n kenchenwebapp1', returnStdout: true
-    def usernameAndPasswod = getFtpUsernameAndPassword pubProfilesJson
-    echo usernameAndPasswod['username']
-    sh 'az account show'
+    def ftpProfile = getFtpPublishProfile pubProfilesJson
+    sh "echo curl -T Jenkinsfile $(ftpProfile['url'] + '/webapps/') -u '$ftpProfile['username']:$ftpProfile['password']'"
     sh 'az logout'
 }
