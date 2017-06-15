@@ -18,7 +18,7 @@ def getFtpPublishProfile(def publishProfilesJson) {
     def pubProfiles = new JsonSlurper().parseText(publishProfilesJson)
     for (p in pubProfiles)
         if (p['publishMethod'] == 'FTP')
-            return [url: p['publishUrl'], username: p['userName'], password: p['userPWD']]
+            return [url: p.publishUrl, username: p.userName, password: p.userPWD]
 }
 
 node {
@@ -31,6 +31,6 @@ node {
     sh 'az account show'
     def pubProfilesJson = sh script: 'az webapp deployment list-publishing-profiles -g kenchenwebapp1 -n kenchenwebapp1', returnStdout: true
     def ftpProfile = getFtpPublishProfile pubProfilesJson
-    sh "echo curl -T Jenkinsfile $(ftpProfile['url'] + '/webapps/') -u '$ftpProfile['username']:$ftpProfile['password']'"
+    sh "echo curl -T Jenkinsfile $(ftpProfile.url)/webapps -u '$ftpProfile.username:$ftpProfile.password'"
     sh 'az logout'
 }
