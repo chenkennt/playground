@@ -35,6 +35,6 @@ node {
         pwd
         ls
     '''
-    sh "curl -T Jenkinsfile $ftpProfile.url/webapps -u '$ftpProfile.username:$ftpProfile.password'"
+    sh "curl -T Jenkinsfile $ftpProfile.url/webapps/ -u '$ftpProfile.username:$ftpProfile.password'"
     sh 'az logout'
 }
