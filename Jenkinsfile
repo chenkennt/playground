@@ -11,6 +11,9 @@
 //    }
 //}
 
+def shWithOutput(def script) {
+    sh (script: script, return Stdout: true)
+}
 
 node {
     withCredentials([azureServicePrincipal('vs_china_jenkins')]) {
@@ -20,7 +23,7 @@ node {
         '''
     }
     sh 'az account show'
-    def pubSettings = sh 'az webapp deployment list-publishing-profiles -g kenchenwebapp1 -nkenchenwebapp1'
+    def pubSettings = shWithOutput 'az webapp deployment list-publishing-profiles -g kenchenwebapp1 -nkenchenwebapp1'
     echo pubSettings
     sh 'az account show'
     sh 'az logout'
