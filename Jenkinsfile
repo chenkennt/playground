@@ -13,6 +13,12 @@
 
 import groovy.json.JsonSlurper
 
+def getFtpPublishProfile(def publishProfilesJson) {
+    def pubProfiles = new JsonSlurper().parseText(publishProfilesJson)
+    for (p : pubProfiles)
+        if (p["publishMethod"] == "FTP") return p;
+}
+
 node {
     withCredentials([azureServicePrincipal('vs_china_jenkins')]) {
         sh '''
@@ -22,8 +28,8 @@ node {
     }
     sh 'az account show'
     def pubProfilesJson = sh script: 'az webapp deployment list-publishing-profiles -g kenchenwebapp1 -n kenchenwebapp1', returnStdout: true
-    def pubProfiles = new JsonSlurper().parseText(pubProfilesJson)
-    echo pubProfiles
+    def ftpPubProfile = getFtpPublishProfile pubProfilesJson
+    echo pubProfiles["userName"]
     sh 'az account show'
     sh 'az logout'
 }
