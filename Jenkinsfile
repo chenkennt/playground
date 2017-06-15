@@ -12,7 +12,7 @@
 //}
 
 def shWithOutput(def script) {
-    sh (script: script, return Stdout: true)
+    sh (script: script, returnStdout: true)
 }
 
 node {
